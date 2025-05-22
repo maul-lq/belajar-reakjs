@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/jsx">
+        function HomePage() {
+            const [counter1, setCounter1] = React.useState(0);
+            const [counter2, setCounter2] = React.useState(0);
+
+            function handleClick(index, modifikasi) {
+                if (index === 0) {
+                    const counter = counter1 + 1*modifikasi;
+                    setCounter1(counter);
+                } else {
+                    const counter = counter2 + 1*modifikasi;
+                    if (counter < 0 || counter > 90) {
+                        setCounter2("Done!");
+                    } else {
+                        setCounter2(counter);
+                    }
+                }
+            }
+            return (
+                <div>
+                    <Header subjek="Reak Membuat Kounter Biasa x10" />
+                    <div>
+                        <Button value="-" callFunction={() => handleClick(0,-10)} /> {counter1} <Button value="+" callFunction={() => handleClick(0,10)} />
+                    </div><br/>
+                    <Button value={"Reset!"}  callFunction={() => setCounter1(0)}/>
+                    <br/>
+                    <br/>
+                    <Header subjek="Reak Membuat Kounter 0 ... 100 (x10)" />
+                    <div>
+                        <Button value="-" callFunction={() => handleClick(1,-10)} isDisabled={counter2=="Done!"} /> {counter2} <Button value="+" callFunction={() => handleClick(1,10)} isDisabled={counter2=="Done!"}/>
+                    </div><br/>
+                    <Button value={"Reset!"}  callFunction={() => setCounter2(0)} isDisabled={counter2!="Done!"}/>
+                </div>
+            );
+        }
+
+        function Header({ subjek }) {
+            return (
+                <h1>Belajar {subjek ? subjek : "React"}</h1>
+            );
+        }
+
+        function Button({ callFunction, value, isDisabled }) {
+            if (isDisabled) {
+                return (
+                    <button onClick={callFunction} disabled>{value}</button>
+                );
+            } else {
+                return (
+                    <button onClick={callFunction}>{value}</button>
+                );
+            }
+        }
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<HomePage />);
+    </script>
+</body>
+
+</html>

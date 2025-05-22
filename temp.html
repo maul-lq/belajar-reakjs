@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function HomePage() {
+            const listMahasiswa = ['A', 'B', 'C', 'D'];
+            const [like, setLikes] = React.useState(0);
+
+            function handleClick() {
+                setLikes(like + 1);
+            }
+            
+            return (
+                <div>
+                    <Header />
+                    <Header subjek="Reak" />
+                    <p>Belajar React bareng orang lain di video.</p>
+                    <ul>
+                        {
+                            listMahasiswa.map(mahasiswa => (
+                                <li key={mahasiswa}>{mahasiswa}</li>
+                            ))
+                        }    
+                    </ul>
+                    <Button handleClick={handleClick} state={like} />
+                </div>
+            );
+        }
+
+        function Header({ subjek }) {
+            return (
+                <h1>Belajar {subjek ? subjek : "React"}</h1>
+            );
+        }
+
+        function Button({handleClick, state}) {
+            return (
+                <button onClick={handleClick}>Like ({state})</button>
+            );   
+        }
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<HomePage />);
+    </script>
+</body>
+
+</html>
