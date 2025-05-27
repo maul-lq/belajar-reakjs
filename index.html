@@ -16,35 +16,32 @@
     <script type="text/babel">
         function HomePage() {
             const [counter1, setCounter1] = React.useState(0);
-            const [counter2, setCounter2] = React.useState(0);
 
-            function handleClick(index, modifikasi) {
-                if (index === 0) {
-                    const counter = counter1 + 1*modifikasi;
-                    setCounter1(counter);
-                } else {
-                    const counter = counter2 / 1*modifikasi;
-                    if (counter < 0 || counter > 90) {
-                        setCounter2("Done!");
-                    } else {
-                        setCounter2(counter);
-                    }
+            function handleClick(index, modifikasi, operation) {
+                let counter = counter1;
+                if (operation === "kali") {
+                    counter *= modifikasi;
+                } else if (operation === "bagi") {
+                    counter /= modifikasi;
+                } else if (operation === "tambah") {
+                    counter += modifikasi;
+                } else if (operation === "kurang") {
+                    counter -= modifikasi;
                 }
+                setCounter1(counter);
             }
             return (
                 <div>
-                    <Header subjek="Reak Membuat Kounter Biasa x10" />
+                    <Header subjek="Reak Membuat Kounter" />
                     <div>
-                        <Button value="-" callFunction={() => handleClick(0,10)} /> {counter1} <Button value="*" callFunction={() => handleClick(0,10)} />
+                        <Button value="-" callFunction={() => handleClick(0, 1, "kurang")} /> 
+                        <Button value="/" callFunction={() => handleClick(0, 10, "bagi")} /> 
+                        {counter1} 
+                        <Button value="*" callFunction={() => handleClick(0, 10, "kali")} /> 
+                        <Button value="+" callFunction={() => handleClick(0, 1, "tambah")} />
                     </div><br/>
-                    <Button value={"Reset!"}  callFunction={() => setCounter1(0)}/>
-                    <br/>
-                    <br/>
-                    <Header subjek="Reak Membuat Kounter 0 ... 100 (x10)" />
-                    <div>
-                        <Button value="-" callFunction={() => handleClick(1,10)} isDisabled={counter2=="Done!"} /> {counter2} <Button value="/" callFunction={() => handleClick(1,10)} isDisabled={counter2=="Done!"}/>
-                    </div><br/>
-                    <Button value={"Reset!"}  callFunction={() => setCounter2(0)} isDisabled={counter2!="Done!"}/>
+                    <Button value={"Reset!"} callFunction={() => setCounter1(1)} />
+                    <br/><br/>
                 </div>
             );
         }
