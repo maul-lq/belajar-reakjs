@@ -34,13 +34,13 @@
                 <div>
                     <Header subjek="Reak Membuat Kounter" />
                     <div>
-                        <Button value="-" callFunction={() => handleClick(0, 1, "kurang")} /> 
-                        <Button value="/" callFunction={() => handleClick(0, 10, "bagi")} /> 
+                        <Button isi="-" pangilFungsi={() => handleClick(0, 1, "kurang")} /> 
+                        <Button isi="/" pangilFungsi={() => handleClick(0, 10, "bagi")} /> 
                         {counter1} 
-                        <Button value="*" callFunction={() => handleClick(0, 10, "kali")} /> 
-                        <Button value="+" callFunction={() => handleClick(0, 1, "tambah")} />
+                        <Button isi="*" pangilFungsi={() => handleClick(0, 10, "kali")} /> 
+                        <Button isi="+" pangilFungsi={() => handleClick(0, 1, "tambah")} />
                     </div><br/>
-                    <Button value={"Reset!"} callFunction={() => setCounter1(1)} />
+                    <Button isi={"Reset!"} pangilFungsi={() => setCounter1(1)} />
                     <br/><br/>
                 </div>
             );
@@ -52,14 +52,14 @@
             );
         }
 
-        function Button({ callFunction, value, isDisabled }) {
-            if (isDisabled) {
+        function Button({ pangilFungsi, isi, isDisabled }) {
+            if (isDisabled) { // tidak dipakai
                 return (
-                    <button onClick={callFunction} disabled>{value}</button>
+                    <button onClick={pangilFungsi} disabled>{isi}</button>
                 );
             } else {
                 return (
-                    <button onClick={callFunction}>{value}</button>
+                    <button onClick={pangilFungsi}>{isi}</button>
                 );
             }
         }
