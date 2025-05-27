@@ -23,7 +23,7 @@
                     const counter = counter1 + 1*modifikasi;
                     setCounter1(counter);
                 } else {
-                    const counter = counter2 + 1*modifikasi;
+                    const counter = counter2 / 1*modifikasi;
                     if (counter < 0 || counter > 90) {
                         setCounter2("Done!");
                     } else {
@@ -35,14 +35,14 @@
                 <div>
                     <Header subjek="Reak Membuat Kounter Biasa x10" />
                     <div>
-                        <Button value="-" callFunction={() => handleClick(0,-10)} /> {counter1} <Button value="+" callFunction={() => handleClick(0,10)} />
+                        <Button value="-" callFunction={() => handleClick(0,10)} /> {counter1} <Button value="*" callFunction={() => handleClick(0,10)} />
                     </div><br/>
                     <Button value={"Reset!"}  callFunction={() => setCounter1(0)}/>
                     <br/>
                     <br/>
                     <Header subjek="Reak Membuat Kounter 0 ... 100 (x10)" />
                     <div>
-                        <Button value="-" callFunction={() => handleClick(1,-10)} isDisabled={counter2=="Done!"} /> {counter2} <Button value="+" callFunction={() => handleClick(1,10)} isDisabled={counter2=="Done!"}/>
+                        <Button value="-" callFunction={() => handleClick(1,10)} isDisabled={counter2=="Done!"} /> {counter2} <Button value="/" callFunction={() => handleClick(1,10)} isDisabled={counter2=="Done!"}/>
                     </div><br/>
                     <Button value={"Reset!"}  callFunction={() => setCounter2(0)} isDisabled={counter2!="Done!"}/>
                 </div>
